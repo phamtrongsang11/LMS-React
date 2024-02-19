@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
-import useUserStore from '@/hooks/useUserStore';
-import MobileSidebar from './MobileSidebar';
 import NavbarRoutes from '../NavbarRoutes';
+import MobileSidebar from './MobileSidebar';
 
 const Navbar = () => {
 	return (

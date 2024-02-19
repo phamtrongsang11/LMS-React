@@ -1,9 +1,8 @@
-import React from 'react';
-import { Button } from './ui/button';
+import { UserButton } from '@clerk/clerk-react';
 import { LogOut } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchInput from './SearchInput';
-import { UserButton } from '@clerk/clerk-react';
+import { Button } from './ui/button';
 
 const NavbarRoutes = () => {
 	const location = useLocation();

@@ -19,6 +19,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as z from 'zod';
 import ChaptersList from './ChaptersList';
+import Loading from '@/components/Loading';
 
 interface ChaptersFormProps {
 	initialData: Course & { chapters: Chapter[] };
@@ -90,7 +91,7 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 		navigate(`/teacher/courses/${courseId}/chapters/${id}`);
 	};
 
-	if (isPending || pendingReorder) return <h1>Loading...</h1>;
+	if (isPending || pendingReorder) return <Loading />;
 
 	return (
 		<div className="relative mt-6 border bg-slate-100 rounded-md p-4">

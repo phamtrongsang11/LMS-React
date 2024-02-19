@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -7,7 +8,6 @@ import {
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import useChapterStore from '@/hooks/useChapterStore';
 import useReactMutation from '@/hooks/useReactMutation';
 import { editChapter } from '@/services/chapter-services';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -40,8 +40,6 @@ const ChapterTitleForm = ({
 	chapterId,
 }: ChapterTitleFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);
-	const refresh = useChapterStore((c) => c.refresh);
-	const setRefresh = useChapterStore((c) => c.setRefresh);
 
 	const toggleEdit = () => setIsEditing((current) => !current);
 
@@ -66,7 +64,7 @@ const ChapterTitleForm = ({
 		mutate({ id: chapterId, ...values });
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	return (
 		<div className="mt-6 border bg-slate-100 rounded-md p-4">

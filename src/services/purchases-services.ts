@@ -1,4 +1,4 @@
-import { AnalyticsResponse, Category, Purchase } from '@/libs/types';
+import { AnalyticsResponse, Purchase } from '@/libs/types';
 import { get, getAll, patch, post } from './api-client';
 
 const endpoint = '/purchases';

@@ -1,4 +1,5 @@
 import CoursesList from '@/components/CourseList';
+import Loading from '@/components/Loading';
 import InfoCard from '@/components/dashboard/InfoCard';
 import useClerkUser from '@/hooks/useClerkUser';
 import useReactQuery from '@/hooks/useReactQuery';
@@ -6,10 +7,8 @@ import { CourseWithProgress } from '@/libs/types';
 import { getUnAndCompleteCourse } from '@/services/course-services';
 import { CheckCircle, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const DashboardPage = () => {
-	const navigate = useNavigate();
 	const { user, isLoaded } = useClerkUser();
 	const [courses, setCourses] = useState<CourseWithProgress[]>([]);
 
@@ -50,7 +49,7 @@ const DashboardPage = () => {
 
 	if (error) return <h1>{error?.message}</h1>;
 
-	if (isLoading || !isLoaded) return <h1>Loading...</h1>;
+	if (isLoading || !isLoaded) return <Loading />;
 
 	return (
 		<div className="p-6 space-y-4">

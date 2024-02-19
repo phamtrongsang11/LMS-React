@@ -8,6 +8,7 @@ import { ConfettiProvider } from './components/providers/ConfettiProvider';
 import ToastProvider from './components/providers/ToastProvider';
 import './index.css';
 import routes from './routes';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -17,14 +18,21 @@ if (!PUBLISHABLE_KEY) {
 
 const queryClient = new QueryClient();
 
+const initialOptions = {
+	clientId: import.meta.env.VITE_PAYPAL_ID,
+	currency: 'USD',
+};
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<ClerkProvider publishableKey={PUBLISHABLE_KEY}>
 			<ConfettiProvider />
 			<ToastProvider />
 			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={routes} />
-				<ReactQueryDevtools />
+				<PayPalScriptProvider options={initialOptions}>
+					<RouterProvider router={routes} />
+					<ReactQueryDevtools />
+				</PayPalScriptProvider>
 			</QueryClientProvider>
 		</ClerkProvider>
 	</React.StrictMode>

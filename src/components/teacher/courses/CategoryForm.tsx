@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import { Combobox } from '@/components/ui/combobox';
 import {
@@ -68,7 +69,7 @@ const CategoryForm = ({
 		});
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	const selectedOption = options.find(
 		(option) => option.value === initialData?.category?.id

@@ -1,30 +1,13 @@
+import Loading from '@/components/Loading';
 import Navbar from '@/components/dashboard/Navbar';
 import Sidebar from '@/components/dashboard/Sidebar';
 import useClerkUser from '@/hooks/useClerkUser';
-import useUserStore from '@/hooks/useUserStore';
-import { useAuth, useUser } from '@clerk/clerk-react';
-import { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
-	// const setUser = useUserStore((u) => u.setUser);
-	// const setIsLoadingUser = useUserStore((u) => u.setIsLoadingUser);
-	const navigate = useNavigate();
 	const { isLoaded } = useClerkUser();
 
-	// useEffect(() => {
-	// 	setIsLoadingUser(!isLoaded);
-	// }, [isLoaded]);
-	// useEffect(() => {
-	// 	if (isLoaded) {
-	// 		if (!isSignedIn || !user) {
-	// 			navigate('/auth/signin');
-	// 		}
-	// 		setUser(user?.id!);
-	// 	}
-	// }, [isLoaded]);
-
-	if (!isLoaded) return 'Loadinglayout...';
+	if (!isLoaded) return <Loading />;
 
 	return (
 		<div className="h-full">

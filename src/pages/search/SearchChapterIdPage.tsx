@@ -1,4 +1,5 @@
 import { Banner } from '@/components/Banner';
+import Loading from '@/components/Loading';
 import CourseEnrollButton from '@/components/search/CourseEnrollButton';
 import CourseProgressButton from '@/components/search/CourseProgressButton';
 import { VideoPlayer } from '@/components/teacher/chapters/VideoPlayer';
@@ -8,7 +9,7 @@ import useClerkUser from '@/hooks/useClerkUser';
 import useReactQuery from '@/hooks/useReactQuery';
 import { getAllInfoChapter } from '@/services/chapter-services';
 import { File } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const SearchChapterIdPage = () => {
 	const { chapterId, courseId } = useParams<{
@@ -31,7 +32,7 @@ const SearchChapterIdPage = () => {
 
 	if (error) return <h1>{error?.message}</h1>;
 
-	if (isLoading || !isLoaded) return <h1>Loading...</h1>;
+	if (isLoading || !isLoaded) return <Loading />;
 
 	const isLocked = !chapters?.chapter.isFree && !chapters?.purchase;
 	const completeOnEnd =
@@ -58,6 +59,7 @@ const SearchChapterIdPage = () => {
 						userProgressId={chapters?.userProgress?.id!}
 						nextChapterId={chapters?.nextChapter?.id}
 						isLocked={isLocked}
+						nextIsPublished={chapters?.nextChapter?.isPublished!}
 						completeOnEnd={completeOnEnd}
 					/>
 				</div>
@@ -70,8 +72,9 @@ const SearchChapterIdPage = () => {
 							<CourseProgressButton
 								chapterId={chapterId!}
 								courseId={courseId!}
-								userProgressId={chapters?.userProgress.id}
+								userProgressId={chapters?.userProgress?.id}
 								nextChapterId={chapters.nextChapter?.id}
+								nextIsPublished={chapters.nextChapter?.isPublished}
 								isCompleted={!!chapters?.userProgress?.isCompleted}
 							/>
 						) : (
@@ -79,6 +82,7 @@ const SearchChapterIdPage = () => {
 								userId={user?.id!}
 								courseId={courseId!}
 								price={chapters?.course.price!}
+								courseTitle={chapters?.course.title!}
 							/>
 						)}
 					</div>

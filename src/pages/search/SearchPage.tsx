@@ -1,4 +1,5 @@
 import CoursesList from '@/components/CourseList';
+import Loading from '@/components/Loading';
 import SearchInput from '@/components/SearchInput';
 import Categories from '@/components/search/Categories';
 import useClerkUser from '@/hooks/useClerkUser';
@@ -6,11 +7,9 @@ import useReactQuery from '@/hooks/useReactQuery';
 import { Category, CourseWithProgress } from '@/libs/types';
 import { getCategories } from '@/services/category-services';
 import { getCourseWithProgress } from '@/services/course-services';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const SearchPage = () => {
-	const navigate = useNavigate();
-
 	const searchParams = new URLSearchParams(useLocation().search);
 	const paramsKeyValue = Object.fromEntries(searchParams.entries());
 
@@ -41,7 +40,7 @@ const SearchPage = () => {
 	if (error || errorCate)
 		return <h1>{error?.message || errorCate?.message}</h1>;
 
-	if (isLoading || !isLoaded || isLoadingCate) return <h1>Loading...</h1>;
+	if (isLoading || !isLoaded || isLoadingCate) return <Loading />;
 
 	return (
 		<>

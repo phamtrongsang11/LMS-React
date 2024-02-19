@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { DataTable } from '@/components/teacher/courses/Table/DataTable';
 import { columns } from '@/components/teacher/courses/Table/columns';
 import useClerkUser from '@/hooks/useClerkUser';
@@ -20,7 +21,7 @@ const CoursesPage = () => {
 
 	if (error) return <h1>{error?.message}</h1>;
 
-	if (isLoading || !isLoaded) return <h1>Loading...</h1>;
+	if (isLoading || !isLoaded) return <Loading />;
 
 	return (
 		<div className="p-6">

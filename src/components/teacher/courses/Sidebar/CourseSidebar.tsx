@@ -1,4 +1,5 @@
 import CourseProgress from '@/components/CourseProgress';
+import Loading from '@/components/Loading';
 import useClerkUser from '@/hooks/useClerkUser';
 import useReactQuery from '@/hooks/useReactQuery';
 import { Course } from '@/libs/types';
@@ -13,18 +14,14 @@ interface CourseSidbarProps {
 const CourseSidebar = ({ course, progressCount }: CourseSidbarProps) => {
 	const { user, isLoaded } = useClerkUser();
 
-	const {
-		data: purchase,
-		isLoading,
-		error,
-	} = useReactQuery(
+	const { data: purchase, isLoading } = useReactQuery(
 		'purchaseCourse',
 		() => getPurchaseByCourseUser(course.id, user?.id!),
 		[course.id],
 		!!user
 	);
 
-	if (isLoading || !isLoaded) return <h1>Loading...</h1>;
+	if (isLoading || !isLoaded) return <Loading />;
 
 	return (
 		<div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">

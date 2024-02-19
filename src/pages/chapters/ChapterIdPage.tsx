@@ -1,5 +1,6 @@
 import { Banner } from '@/components/Banner';
 import { IconBadge } from '@/components/IconBadge';
+import Loading from '@/components/Loading';
 import ChapterAccessForm from '@/components/teacher/chapters/ChapterAccessForm';
 import ChapterActions from '@/components/teacher/chapters/ChapterActions';
 import ChapterDescriptionForm from '@/components/teacher/chapters/ChapterDescriptionForm';
@@ -9,14 +10,13 @@ import useReactQuery from '@/hooks/useReactQuery';
 import { Chapter } from '@/libs/types';
 import { getChapter } from '@/services/chapter-services';
 import { ArrowLeft, Eye, LayoutDashboard, Video } from 'lucide-react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ChapterIdPage = () => {
 	const { courseId, chapterId } = useParams<{
 		courseId: string;
 		chapterId: string;
 	}>();
-	const navigate = useNavigate();
 
 	const {
 		data: chapter,
@@ -28,7 +28,7 @@ const ChapterIdPage = () => {
 
 	if (error) return <h1>{error?.message}</h1>;
 
-	if (isLoading) return <h1>Loading...</h1>;
+	if (isLoading) return <Loading />;
 
 	const requiredFields = [
 		chapter?.title,

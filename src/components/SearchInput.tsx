@@ -1,9 +1,9 @@
-import qs from 'query-string';
-import { Search } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { Input } from './ui/input';
 import { useDebounce } from '@/hooks/useDebounce';
+import { Search } from 'lucide-react';
+import qs from 'query-string';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Input } from './ui/input';
 
 const SearchInput = () => {
 	const [value, setValue] = useState('');

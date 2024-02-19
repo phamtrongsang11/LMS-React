@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
-import { FileIcon, X } from 'lucide-react';
 
 type ImageFile = File | null;
 type ImagePrview = string | undefined;

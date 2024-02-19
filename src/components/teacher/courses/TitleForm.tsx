@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -57,8 +58,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
 		mutate({ id: courseId, ...values });
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
-
+	if (isPending) return <Loading />;
 	return (
 		<div className="mt-6 border bg-slate-100 rounded-md p-4">
 			<div className="font-medium flex items-center justify-between">

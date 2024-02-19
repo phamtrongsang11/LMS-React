@@ -8,6 +8,7 @@ import { editUserProgress } from '@/services/userprogress-services';
 import { useQueryClient } from '@tanstack/react-query';
 import ReactPlayer from 'react-player';
 import { useNavigate } from 'react-router-dom';
+import Loading from '@/components/Loading';
 
 interface VideoPlayerProps {
 	url: string;
@@ -16,6 +17,7 @@ interface VideoPlayerProps {
 	userProgressId: string;
 	nextChapterId?: string;
 	isLocked: boolean;
+	nextIsPublished: boolean;
 	completeOnEnd: boolean;
 }
 
@@ -30,6 +32,7 @@ export const VideoPlayer = ({
 	chapterId,
 	userProgressId,
 	nextChapterId,
+	nextIsPublished,
 	isLocked,
 	completeOnEnd,
 }: VideoPlayerProps) => {
@@ -38,7 +41,7 @@ export const VideoPlayer = ({
 	const navigate = useNavigate();
 	const queryClient = useQueryClient();
 
-	const { mutate, isPending, error } = useReactMutation<UpdatedProgress>(
+	const { mutate, isPending } = useReactMutation<UpdatedProgress>(
 		editUserProgress,
 		'chapterInfo',
 		[chapterId],
@@ -52,7 +55,7 @@ export const VideoPlayer = ({
 				queryKey: ['coursesWithProgress', [courseId]],
 			});
 
-			if (nextChapterId) {
+			if (nextChapterId && nextIsPublished) {
 				navigate(`/courses/${courseId}/chapters/${nextChapterId}`);
 			}
 		}
@@ -66,7 +69,7 @@ export const VideoPlayer = ({
 			});
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	return (
 		<div className="relative aspect-video">

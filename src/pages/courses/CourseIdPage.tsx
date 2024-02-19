@@ -1,5 +1,6 @@
 import { Banner } from '@/components/Banner';
 import { IconBadge } from '@/components/IconBadge';
+import Loading from '@/components/Loading';
 import Actions from '@/components/teacher/courses/Actions';
 import AttachmentForm from '@/components/teacher/courses/AttachmentForm';
 import CategoryForm from '@/components/teacher/courses/CategoryForm';
@@ -38,7 +39,7 @@ const CourseIdPage = () => {
 	if (error || errorCate)
 		return <h1>{error?.message || errorCate?.message}</h1>;
 
-	if (isLoading || isLoadingCate) return <h1>Loading...</h1>;
+	if (isLoading || isLoadingCate) return <Loading />;
 
 	const requiredFields = [
 		course?.title,

@@ -1,4 +1,5 @@
 import FileUpload from '@/components/FIleUpload';
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import useReactMutation from '@/hooks/useReactMutation';
 import { Attachment, Course } from '@/libs/types';
@@ -44,6 +45,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
 	const { mutate: mutateDelete, isPending: pendingDelete } = useReactMutation<{
 		id: string;
 	}>(deleteAttachment, 'course', [courseId], () => {
+		setDeletingId('');
 		toast.success('Attachment deleted');
 	});
 
@@ -55,12 +57,13 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
 	};
 
 	const onDelete = (id: string) => {
+		setDeletingId(id);
 		mutateDelete({
 			id,
 		});
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	return (
 		<div className="mt-6 border bg-slate-100 rounded-md p-4">

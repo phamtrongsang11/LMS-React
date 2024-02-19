@@ -1,4 +1,5 @@
 import FileUpload from '@/components/FIleUpload';
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import useReactMutation from '@/hooks/useReactMutation';
 import { Chapter } from '@/libs/types';
@@ -47,7 +48,7 @@ const ChapterVideoForm = ({
 		mutate({ id: chapterId, ...values });
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	return (
 		<div className="mt-6 border bg-slate-100 rounded-md p-4">

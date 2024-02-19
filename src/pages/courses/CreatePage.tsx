@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import {
 	Form,
@@ -33,7 +34,7 @@ const CreatePage = () => {
 
 	const { user, isLoaded } = useClerkUser();
 
-	const { mutate, isPending, error } = useReactMutation<AddCourse>(
+	const { mutate, isPending } = useReactMutation<AddCourse>(
 		createCourse,
 		'coursesByUser',
 		undefined,
@@ -59,7 +60,7 @@ const CreatePage = () => {
 		});
 	};
 
-	if (!isLoaded || isPending) return <h1>Loading...</h1>;
+	if (!isLoaded || isPending) return <Loading />;
 
 	return (
 		<div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-[90vh] p-6">

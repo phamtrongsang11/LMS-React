@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import { Button } from '@/components/ui/button';
 import { Editor } from '@/components/ui/editor';
 import {
@@ -65,7 +66,7 @@ const ChapterDescriptionForm = ({
 		mutate({ id: chapterId, ...values });
 	};
 
-	if (isPending) return <h1>Loading...</h1>;
+	if (isPending) return <Loading />;
 
 	return (
 		<div className="mt-6 border bg-slate-100 rounded-md p-4">

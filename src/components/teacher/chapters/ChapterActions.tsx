@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import ConfirmModal from '@/components/modals/ConfirmModal';
 import { Button } from '@/components/ui/button';
 import useReactMutation from '@/hooks/useReactMutation';
@@ -61,7 +62,7 @@ const ChapterActions = ({
 		});
 	};
 
-	if (isPending || pendingDelete) return <h1>Loading...</h1>;
+	if (isPending || pendingDelete) return <Loading />;
 
 	return (
 		<div className="flex items-center gap-x-2">

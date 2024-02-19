@@ -1,3 +1,4 @@
+import Loading from '@/components/Loading';
 import CourseNavbar from '@/components/teacher/courses/Sidebar/CourseNavbar';
 import CourseSidebar from '@/components/teacher/courses/Sidebar/CourseSidebar';
 import useClerkUser from '@/hooks/useClerkUser';
@@ -14,18 +15,14 @@ const CourseLayout = () => {
 
 	const { user, isLoaded } = useClerkUser();
 
-	const {
-		data: course,
-		isLoading,
-		error,
-	} = useReactQuery<CourseWithProgress>(
+	const { data: course, isLoading } = useReactQuery<CourseWithProgress>(
 		'coursesWithProgress',
 		() => getCourseWithProgressSingle(user?.id!, courseId!),
 		[courseId],
 		!!user
 	);
 
-	if (!isLoaded || isLoading) return <h1>Loading...</h1>;
+	if (!isLoaded || isLoading) return <Loading />;
 
 	return (
 		<div className="h-full">
