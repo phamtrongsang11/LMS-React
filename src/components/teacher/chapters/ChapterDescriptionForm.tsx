@@ -22,7 +22,6 @@ import * as z from 'zod';
 
 interface ChapterDescriptionFormProps {
 	initialData: Chapter;
-	courseId: string;
 	chapterId: string;
 }
 
@@ -37,7 +36,6 @@ type editDescriptionChapter = {
 
 const ChapterDescriptionForm = ({
 	initialData,
-	courseId,
 	chapterId,
 }: ChapterDescriptionFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);

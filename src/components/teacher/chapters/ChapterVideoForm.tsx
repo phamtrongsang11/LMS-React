@@ -12,7 +12,6 @@ import * as z from 'zod';
 
 interface ChapterVideoFormProps {
 	initialData: Chapter;
-	courseId: string;
 	chapterId: string;
 }
 
@@ -27,7 +26,6 @@ type editVideoChapter = {
 
 const ChapterVideoForm = ({
 	initialData,
-	courseId,
 	chapterId,
 }: ChapterVideoFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);

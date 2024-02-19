@@ -21,7 +21,6 @@ import * as z from 'zod';
 
 interface ChapterAccessFormProps {
 	initialData: Chapter;
-	courseId: string;
 	chapterId: string;
 }
 
@@ -36,7 +35,6 @@ type editAccessChapter = {
 
 const ChapterAccessForm = ({
 	initialData,
-	courseId,
 	chapterId,
 }: ChapterAccessFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);

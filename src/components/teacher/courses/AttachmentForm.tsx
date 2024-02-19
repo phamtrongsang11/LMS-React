@@ -42,7 +42,7 @@ const AttachmentForm = ({ initialData, courseId }: AttachmentFormProps) => {
 		}
 	);
 
-	const { mutate: mutateDelete, isPending: pendingDelete } = useReactMutation<{
+	const { mutate: mutateDelete } = useReactMutation<{
 		id: string;
 	}>(deleteAttachment, 'course', [courseId], () => {
 		setDeletingId('');

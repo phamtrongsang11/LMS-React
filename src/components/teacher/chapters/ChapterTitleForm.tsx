@@ -21,7 +21,6 @@ interface ChapterTitleFormProps {
 	initialData: {
 		title: string;
 	};
-	courseId: string;
 	chapterId: string;
 }
 
@@ -36,7 +35,6 @@ type editTitleChapter = {
 
 const ChapterTitleForm = ({
 	initialData,
-	courseId,
 	chapterId,
 }: ChapterTitleFormProps) => {
 	const [isEditing, setIsEditing] = useState(false);

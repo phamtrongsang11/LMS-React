@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 interface ChapterActionsProps {
 	disabled: boolean;
-	courseId: string;
 	chapterId: string;
 	isPublished: boolean;
 }
@@ -25,7 +24,6 @@ type editChapterPublish = {
 
 const ChapterActions = ({
 	disabled,
-	courseId,
 	chapterId,
 	isPublished,
 }: ChapterActionsProps) => {

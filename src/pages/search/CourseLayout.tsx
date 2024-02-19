@@ -8,9 +8,8 @@ import { getCourseWithProgressSingle } from '@/services/course-services';
 import { Outlet, useParams } from 'react-router-dom';
 
 const CourseLayout = () => {
-	const { courseId, chapterId } = useParams<{
+	const { courseId } = useParams<{
 		courseId: string;
-		chapterId: string;
 	}>();
 
 	const { user, isLoaded } = useClerkUser();

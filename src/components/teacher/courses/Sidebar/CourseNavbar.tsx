@@ -1,6 +1,5 @@
 import NavbarRoutes from '@/components/NavbarRoutes';
 import { Course } from '@/libs/types';
-import React from 'react';
 import { CourseMobileSidebar } from './CourseSidebarMobile';
 
 interface CourseNavbarProps {

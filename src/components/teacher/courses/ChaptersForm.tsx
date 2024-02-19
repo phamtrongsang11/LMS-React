@@ -19,7 +19,6 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import * as z from 'zod';
 import ChaptersList from './ChaptersList';
-import Loading from '@/components/Loading';
 
 interface ChaptersFormProps {
 	initialData: Course & { chapters: Chapter[] };
@@ -39,7 +38,6 @@ type editTitleChapter = {
 
 const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 	const [isCreating, setIsCreating] = useState(false);
-	const [isUpdating, setIsUpdating] = useState(false);
 
 	const toggleCreating = () => {
 		setIsCreating((current) => !current);
@@ -91,11 +89,11 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
 		navigate(`/teacher/courses/${courseId}/chapters/${id}`);
 	};
 
-	if (isPending || pendingReorder) return <Loading />;
+	// if (isPending || pendingReorder) return <Loading />;
 
 	return (
 		<div className="relative mt-6 border bg-slate-100 rounded-md p-4">
-			{isUpdating && (
+			{(isPending || pendingReorder) && (
 				<div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
 					<Loader2 className="animate-spin h-6 w-6 text-sky-700" />
 				</div>

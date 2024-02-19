@@ -1,7 +1,7 @@
 import useReactMutation from '@/hooks/useReactMutation';
 import { formatPrice } from '@/libs/format';
 import { createPurchase } from '@/services/purchases-services';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import Loading from '../Loading';
@@ -37,9 +37,8 @@ const CourseEnrollButton = ({
 		}
 	);
 
-	// const [{ isPending: pendingPay }, paypalDispatch] = usePayPalScriptReducer();
-
 	function createOrder(data: any, actions: any) {
+		console.log(data);
 		return actions.order
 			.create({
 				intent: 'CAPTURE',
@@ -61,6 +60,7 @@ const CourseEnrollButton = ({
 
 	function onApprove(data: any, actions: any) {
 		return actions.order.capture().then(async function (details: any) {
+			console.log(data, details);
 			mutate({
 				userId,
 				courseId,

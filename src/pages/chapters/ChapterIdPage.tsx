@@ -69,7 +69,6 @@ const ChapterIdPage = () => {
 							</div>
 							<ChapterActions
 								disabled={!isComplete}
-								courseId={courseId!}
 								chapterId={chapterId!}
 								isPublished={chapter?.isPublished!}
 							/>
@@ -84,14 +83,9 @@ const ChapterIdPage = () => {
 								<h2 className="text-xl">Customize your chapter</h2>
 							</div>
 
-							<ChapterTitleForm
-								initialData={chapter!}
-								courseId={courseId!}
-								chapterId={chapterId!}
-							/>
+							<ChapterTitleForm initialData={chapter!} chapterId={chapterId!} />
 							<ChapterDescriptionForm
 								initialData={chapter!}
-								courseId={courseId!}
 								chapterId={chapterId!}
 							/>
 						</div>
@@ -102,7 +96,6 @@ const ChapterIdPage = () => {
 							</div>
 							<ChapterAccessForm
 								initialData={chapter!}
-								courseId={courseId!}
 								chapterId={chapterId!}
 							/>
 						</div>
@@ -112,11 +105,7 @@ const ChapterIdPage = () => {
 							<IconBadge icon={Video} />
 							<h2 className="text-xl">Add a video</h2>
 						</div>
-						<ChapterVideoForm
-							initialData={chapter!}
-							chapterId={chapterId!}
-							courseId={courseId!}
-						/>
+						<ChapterVideoForm initialData={chapter!} chapterId={chapterId!} />
 					</div>
 				</div>
 			</div>
