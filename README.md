@@ -5,7 +5,7 @@ LMS is an online learning management system. The frontend is created with HTML, 
 - File and video upload
 - Course payment using PayPal
 - Revenue statistics
-<img src="https://github.com/phamtrongsang11/LMS-React/assets/101312630/8e3fb55c-d52e-4f0a-9c33-1bb3661b5e6f" width="80%" height="80%">
+<img src="https://github.com/phamtrongsang11/LMS-React/assets/101312630/8e3fb55c-d52e-4f0a-9c33-1bb3661b5e6f" width="100%" height="100%">
 
 
 ## Demo (You can access demo by bellow link)
