@@ -14,7 +14,8 @@ export const createChapter = (data: Chapter) => post<Chapter>(endpoint, data);
 export const editChapter = (data: Chapter) =>
 	patch<Chapter>(endpoint, data, data.id);
 
-export const deleteChapter = (id: string) => deleteOne<Chapter>(endpoint, id);
+export const deleteChapter = ({ id }: { id: string }) =>
+	deleteOne<Chapter>(endpoint, id);
 
 type reorderChapterProps = { id: string; position: number }[];
 export const reorderChapter = (data: reorderChapterProps) =>

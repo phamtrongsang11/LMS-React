@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 interface ChapterActionsProps {
 	disabled: boolean;
 	chapterId: string;
+	courseId: string;
 	isPublished: boolean;
 }
 
@@ -25,6 +26,7 @@ type editChapterPublish = {
 const ChapterActions = ({
 	disabled,
 	chapterId,
+	courseId,
 	isPublished,
 }: ChapterActionsProps) => {
 	const navigate = useNavigate();
@@ -42,9 +44,9 @@ const ChapterActions = ({
 
 	const { mutate: mutateDelete, isPending: pendingDelete } = useReactMutation<{
 		id: string;
-	}>(deleteChapter, 'coursesByUser', undefined, () => {
+	}>(deleteChapter, 'course', [courseId], () => {
 		toast.success('Chapter deleted');
-		navigate(`/teacher/courses/`);
+		navigate(`/teacher/courses/${courseId}`);
 	});
 
 	const onDelete = () => {

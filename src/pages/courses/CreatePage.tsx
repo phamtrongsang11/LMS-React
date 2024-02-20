@@ -37,7 +37,7 @@ const CreatePage = () => {
 	const { mutate, isPending } = useReactMutation<AddCourse>(
 		createCourse,
 		'coursesByUser',
-		undefined,
+		[user?.id],
 		(savedCourse: Course) => {
 			toast.success('Course created');
 			navigate(`/teacher/courses/${savedCourse.id}`);

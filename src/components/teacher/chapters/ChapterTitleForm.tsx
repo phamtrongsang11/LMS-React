@@ -11,10 +11,12 @@ import { Input } from '@/components/ui/input';
 import useReactMutation from '@/hooks/useReactMutation';
 import { editChapter } from '@/services/chapter-services';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { Pencil } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
 import * as z from 'zod';
 
 interface ChapterTitleFormProps {
@@ -45,6 +47,9 @@ const ChapterTitleForm = ({
 		resolver: zodResolver(formSchema),
 		defaultValues: initialData,
 	});
+	const queryClient = useQueryClient();
+
+	const { courseId } = useParams<{ courseId: string }>();
 
 	const { isSubmitting, isValid } = form.formState;
 
@@ -53,6 +58,9 @@ const ChapterTitleForm = ({
 		'chapter',
 		[chapterId],
 		() => {
+			queryClient.invalidateQueries({
+				queryKey: ['course', [courseId]],
+			});
 			toast.success('Chapter updated');
 			toggleEdit();
 		}

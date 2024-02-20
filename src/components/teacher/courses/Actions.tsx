@@ -1,6 +1,7 @@
 import Loading from '@/components/Loading';
 import ConfirmModal from '@/components/modals/ConfirmModal';
 import { Button } from '@/components/ui/button';
+import useClerkUser from '@/hooks/useClerkUser';
 import { useConfettiStore } from '@/hooks/useConfettiStore';
 import useReactMutation from '@/hooks/useReactMutation';
 import { Course } from '@/libs/types';
@@ -23,6 +24,7 @@ type editCoursePublish = {
 const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 	const navigate = useNavigate();
 	const confetti = useConfettiStore();
+	const { user, isLoaded } = useClerkUser();
 
 	const { mutate, isPending } = useReactMutation<editCoursePublish>(
 		editCoursePublished,
@@ -38,7 +40,7 @@ const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 
 	const { mutate: mutateDelete, isPending: pendingDelete } = useReactMutation<{
 		id: string;
-	}>(deleteCourse, 'coursesByUser', undefined, () => {
+	}>(deleteCourse, 'coursesByUser', [user?.id], () => {
 		toast.success('Course deleted');
 		navigate(`/teacher/courses/`);
 	});
@@ -56,7 +58,7 @@ const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
 		});
 	};
 
-	if (isPending || pendingDelete) return <Loading />;
+	if (isPending || pendingDelete || !isLoaded) return <Loading />;
 	return (
 		<div className="flex items-center gap-x-2">
 			<Button

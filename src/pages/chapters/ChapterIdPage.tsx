@@ -70,6 +70,7 @@ const ChapterIdPage = () => {
 							<ChapterActions
 								disabled={!isComplete}
 								chapterId={chapterId!}
+								courseId={courseId!}
 								isPublished={chapter?.isPublished!}
 							/>
 						</div>

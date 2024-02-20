@@ -19,7 +19,8 @@ export const createCourse = (data: Course) => post<Course>(endpoint, data);
 export const editCourse = (data: Course) =>
 	patch<Course>(endpoint, data, data.id);
 
-export const deleteCourse = (id: string) => deleteOne<Course>(endpoint, id);
+export const deleteCourse = ({ id }: { id: string }) =>
+	deleteOne<Course>(endpoint, id);
 
 export const getCourseWithProgress = (
 	userId: string,
